@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row">
+        <!-- *ngIf="movie.hasOwnProperty('posterPath');then showLoading"> -->
+        <div class="col-md col-lg">
+            <nb-card accent="primary" status="warning">
+                <nb-card-header>
+                    <h2>{{movie["title"]}}</h2>
+                    <h4>{{movie["tagline"]}}</h4>
+                </nb-card-header>
+                <nb-card-body>
+                    <br />
+                    <div class="row">
+                        <div class="col-md col-lg col-sm-6">
+                            {{movie["release_date"]}}
+                        </div>
+                        <div class="col-md col-lg col-sm-6">
+                            {{movie["runtime"]}} mins
+                        </div>
+                        <div class="col-md col-lg col-sm-6">
+                            {{movie["runtime"]}} mins
+                        </div>
+                        <div class="col-md col-lg col-sm-6">
+                            <a href="{{movie['homepage']}}" target="_blank">Home Page</a>
+                        </div>
+                    </div>
+                    <br />
+                    <hr />
+                    <div class="row">
+                        <div class="col-lg col-md" *ngFor="let stream of streams | keyvalue">
+                            <a href="{{stream.value['url']}}" nbTooltip="{{stream.value['display_name']}}"
+                                nbTooltipStatus="primary" target="blank">
+                                <img src="{{stream.value['icon']}}">
+                            </a>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md col-lg">
+                            {{movie["overview"]}}
+                        </div>
+                        <div class="col-md col-lg">
+                            <img class="poster" src="{{movie['posterPath']}}" />
+                        </div>
+                    </div>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+        <div class="col-md col-lg">
+            <ngb-carousel *ngIf="trailers.length > 0">
+                <ng-template ngbSlide *ngFor="let trailer of trailers">
+                    <div  >
+                        <app-ytvideo [video] = "trailer"></app-ytvideo>
+                        <!-- <YtvideoComponent ></YtvideoComponent> -->
+                    </div>
+                    <!-- <div class="carousel-caption">
+                        <h3>No mouse events...</h3>
+                    </div> -->
+                </ng-template>
+            </ngb-carousel>
+
+            <br/>
+            <button (click)="shareFb(trailers[0])">Facebook Share</button>
+
+        </div>
+    </div>
+
+    <ng-template #showLoading>
+        Its loading
+    </ng-template>
+
+</div>

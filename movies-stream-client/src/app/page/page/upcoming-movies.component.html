@@ -1,0 +1,47 @@
+<!-- <div class="card-row" *ngFor="let movies of latestMovies">
+    <div class="card-col" *ngFor="let indivdualMovie of movies">
+        <nb-card size="tiny">
+            
+            <nb-card-header>{{indivdualMovie.title}}</nb-card-header>
+            <nb-card-body>{{indivdualMovie.overview}}</nb-card-body>
+        </nb-card>
+    </div>
+
+</div> -->
+
+
+<div class="container">
+    <div class="row" *ngFor="let movies of latestMovies">
+        <div class="col-md" *ngFor="let indivdualMovie of movies">
+            <nb-card (click) = "redirect(indivdualMovie.id)">
+                
+                <nb-card-header>{{indivdualMovie.title}}</nb-card-header>
+
+                <nb-card-body>
+                    <img (mouseover)="indivdualMovie.show=true" (mouseout)="indivdualMovie.show=false"
+                        src="https://utellyassets9-1.imgix.net/api/Images/4e4d50a0040fd4500193202edbafce6a/Redirect"
+                        class="card-img-top" alt="...">
+                </nb-card-body>
+                <nb-card-body *ngIf="indivdualMovie.show">{{indivdualMovie.overview}}</nb-card-body>
+
+                <nb-card-footer *ngIf="indivdualMovie.show">
+                    {{indivdualMovie.release_date}} | {{indivdualMovie.adult}}<br />
+
+                    <ngb-rating [(rate)]="currentRate"  ></ngb-rating>
+
+                </nb-card-footer>
+            </nb-card>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <app-pagination (childEvent)="pageNum=$event" [pages] = "totalPages"> </app-pagination> -->
+<app-pagination (someEvent)="paginationNumber($event)" [pages]="totalPages"> </app-pagination>
+
+<!-- <h2>Pagination</h2> -->
