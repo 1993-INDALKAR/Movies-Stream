@@ -23,7 +23,7 @@
     "@angular/router": "~9.1.0",
     "@nebular/theme": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "movie-trailer": "^2.0.6",
     "ngx-facebook": "git+https://github.com/jemys89/ngx-facebook.git",
